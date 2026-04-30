@@ -1,30 +1,25 @@
 #include <stdio.h>
 #include <string.h>
 
-// 1. Constante para a quantidade de clientes
 #define TOTAL_CLIENTES 6
 
-// 2. Struct Cliente (incluindo desafio extra)
 typedef struct {
     int codigo;
     char nome[50];
     char telefone[20];
 } Cliente;
 
-// 4. Função para buscar cliente pelo código
 int buscar_cliente_por_codigo(Cliente clientes[], int tamanho, int codigo_busca) {
     for (int i = 0; i < tamanho; i++) {
         if (clientes[i].codigo == codigo_busca) {
-            return i; // Retorna a posição encontrada
+            return i; 
         }
     }
-    return -1; // Caso não encontre
+    return -1; 
 }
 
-// 5. Função para buscar cliente pelo nome
 int buscar_cliente_por_nome(Cliente clientes[], int tamanho, char nome_busca[]) {
     for (int i = 0; i < tamanho; i++) {
-        // strcmp retorna 0 quando as strings são iguais
         if (strcmp(clientes[i].nome, nome_busca) == 0) {
             return i;
         }
@@ -32,7 +27,6 @@ int buscar_cliente_por_nome(Cliente clientes[], int tamanho, char nome_busca[]) 
     return -1;
 }
 
-// Desafio Extra: Função para buscar por telefone
 int buscar_cliente_por_telefone(Cliente clientes[], int tamanho, char tel_busca[]) {
     for (int i = 0; i < tamanho; i++) {
         if (strcmp(clientes[i].telefone, tel_busca) == 0) {
@@ -43,7 +37,6 @@ int buscar_cliente_por_telefone(Cliente clientes[], int tamanho, char tel_busca[
 }
 
 int main() {
-    // 3. Vetor de clientes preenchido (com telefones do desafio)
     Cliente lista[TOTAL_CLIENTES] = {
         {101, "Ana",     "9999-0001"},
         {205, "Bruno",   "9999-0002"},
@@ -54,8 +47,6 @@ int main() {
     };
 
     int pos;
-
-    // --- TESTE 1: Busca por Código (Exemplo: 412) ---
     printf("--- Busca por Codigo ---\n");
     int cod_procurado = 412;
     pos = buscar_cliente_por_codigo(lista, TOTAL_CLIENTES, cod_procurado);
@@ -66,7 +57,6 @@ int main() {
         printf("Cliente nao encontrado pelo codigo informado.\n");
     }
 
-    // --- TESTE 2: Busca por Nome (Exemplo: Carla) ---
     printf("\n--- Busca por Nome ---\n");
     char nome_procurado[] = "Carla";
     pos = buscar_cliente_por_nome(lista, TOTAL_CLIENTES, nome_procurado);
@@ -77,7 +67,6 @@ int main() {
         printf("Cliente nao encontrado pelo nome informado.\n");
     }
 
-    // --- TESTE 3: Busca por Telefone (Desafio Extra) ---
     printf("\n--- Busca por Telefone ---\n");
     char tel_procurado[] = "9999-0005";
     pos = buscar_cliente_por_telefone(lista, TOTAL_CLIENTES, tel_procurado);
@@ -88,7 +77,6 @@ int main() {
         printf("Cliente nao encontrado pelo telefone informado.\n");
     }
 
-    // --- TESTE 4: Cliente Inexistente ---
     printf("\n--- Teste de Erro (Codigo Inexistente) ---\n");
     pos = buscar_cliente_por_codigo(lista, TOTAL_CLIENTES, 999);
     if (pos == -1) {
