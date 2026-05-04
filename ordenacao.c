@@ -29,3 +29,32 @@ void selectionSort(Aluno v[], int n) {
         }
     }
 }
+
+// ================= INSERTION SORT =================]
+void insertionSort(Aluno v[], int n) {
+    resetarContadores();
+
+    for(int i = 1; i < n; i++){
+        Aluno chave = v[i];
+        int j = i - 1;
+
+        while(j >= 0){
+            comparacoes++;  
+
+            if (v[j].nota > chave.nota) {
+                v[j + 1] = v[j]; 
+                trocas++;        
+                j--;
+            } else {
+                break; 
+            }
+        }
+        
+        v[j + 1] = chave;
+        
+        if (j + 1 != i) {
+            trocas++;
+        }
+        }
+    }
+}
