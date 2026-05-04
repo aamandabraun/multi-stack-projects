@@ -1,2 +1,2 @@
 # corrida-algoritmos
-AMANDA E YARA
+AMANDA, OTAVIO E YARA
