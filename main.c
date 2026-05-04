@@ -15,5 +15,14 @@ int main() {
     selectionSort(vetor, n);
     printf("Selection Sort (Aleatorio) -> Comparacoes: %d | Trocas: %d\n", comparacoes, trocas);
 
+    gerarAleatorio(vetor, n);
+    selectionSort(vetor, n);
+    printf("Selection Sort (Aleatorio) -> Comparacoes: %d | Trocas: %d\n", comparacoes, trocas);
+
+    // --- TESTE INSERTION SORT (ALEATÓRIO) ---
+    gerarAleatorio(vetor, n);
+    insertionSort(vetor, n);
+    printf("Insertion Sort (Aleatorio) -> Comparacoes: %d | Trocas: %d\n", comparacoes, trocas);
+    
     return 0;
 }
