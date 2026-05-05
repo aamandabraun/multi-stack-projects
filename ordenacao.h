@@ -1,5 +1,6 @@
 #ifndef ORDENACAO_H
 #define ORDENACAO_H
+
 #include "aluno.h"
 
 void bubbleSort(Aluno v[], int n);
