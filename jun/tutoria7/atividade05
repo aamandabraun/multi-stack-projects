@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct No {
+    int valor;
+    struct No *esq;
+    struct No *dir;
+} No;
+
+No* criarNo(int valor) {
+    No *novo = (No*) malloc(sizeof(No));
+    novo->valor = valor;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    return novo;
+}
+
+No* inserir(No *raiz, int valor) {
+    if (raiz == NULL) return criarNo(valor);
+    if (valor < raiz->valor) raiz->esq = inserir(raiz->esq, valor);
+    else if (valor > raiz->valor) raiz->dir = inserir(raiz->dir, valor);
+    return raiz;
+}
+
+int buscaSequencial(int vetor[], int tamanho, int valor, int *comparacoes) {
+    for (int i = 0; i < tamanho; i++) {
+        (*comparacoes)++;
+        if (vetor[i] == valor) return i;
+    }
+    return -1;
+}
+
+int buscarNaArvore(No *raiz, int valor, int *comparacoes) {
+    if (raiz == NULL) { (*comparacoes)++; return 0; }
+    (*comparacoes)++;
+    if (valor == raiz->valor) return 1;
+    if (valor < raiz->valor) return buscarNaArvore(raiz->esq, valor, comparacoes);
+    return buscarNaArvore(raiz->dir, valor, comparacoes);
+}
+
+void liberar(No *raiz) {
+    if (raiz == NULL) return;
+    liberar(raiz->esq);
+    liberar(raiz->dir);
+    free(raiz);
+}
+
+int main(void) {
+    int valores[] = {50, 30, 70, 20, 40, 60, 80, 10, 35, 45, 55, 75, 90, 5, 25, 38, 48, 65, 85, 95};
+    int n = sizeof(valores) / sizeof(valores[0]);
+
+    No *raiz = NULL;
+    for (int i = 0; i < n; i++)
+        raiz = inserir(raiz, valores[i]);
+
+    int busca = 75;
+    int cSeq = 0, cArv = 0;
+
+    int posSeq = buscaSequencial(valores, n, busca, &cSeq);
+    int achouArv = buscarNaArvore(raiz, busca, &cArv);
+
+    printf("Valor buscado: %d\n", busca);
+
+    printf("\nBusca sequencial:\n");
+    printf("%s\n", posSeq >= 0 ? "Encontrado." : "Nao encontrado.");
+    printf("Comparacoes: %d\n", cSeq);
+
+    printf("\nBusca na arvore:\n");
+    printf("%s\n", achouArv ? "Encontrado." : "Nao encontrado.");
+    printf("Comparacoes: %d\n", cArv);
+
+    liberar(raiz);
+    return 0;
+}

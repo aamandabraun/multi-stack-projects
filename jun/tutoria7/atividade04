@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct No {
+    int valor;
+    struct No *esq;
+    struct No *dir;
+} No;
+
+No* criarNo(int valor) {
+    No *novo = (No*) malloc(sizeof(No));
+    novo->valor = valor;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    return novo;
+}
+
+No* inserir(No *raiz, int valor) {
+    if (raiz == NULL) return criarNo(valor);
+    if (valor < raiz->valor) raiz->esq = inserir(raiz->esq, valor);
+    else if (valor > raiz->valor) raiz->dir = inserir(raiz->dir, valor);
+    return raiz;
+}
+
+No* menorNo(No *raiz) {
+    while (raiz->esq != NULL)
+        raiz = raiz->esq;
+    return raiz;
+}
+
+No* remover(No *raiz, int valor) {
+    if (raiz == NULL) {
+        printf("Valor %d nao encontrado.\n", valor);
+        return NULL;
+    }
+    if (valor < raiz->valor) {
+        raiz->esq = remover(raiz->esq, valor);
+    } else if (valor > raiz->valor) {
+        raiz->dir = remover(raiz->dir, valor);
+    } else {
+        if (raiz->esq == NULL) {
+            No *temp = raiz->dir;
+            free(raiz);
+            return temp;
+        } else if (raiz->dir == NULL) {
+            No *temp = raiz->esq;
+            free(raiz);
+            return temp;
+        }
+        No *sucessor = menorNo(raiz->dir);
+        raiz->valor = sucessor->valor;
+        raiz->dir = remover(raiz->dir, sucessor->valor);
+    }
+    return raiz;
+}
+
+void emOrdem(No *raiz) {
+    if (raiz == NULL) return;
+    emOrdem(raiz->esq);
+    printf("%d ", raiz->valor);
+    emOrdem(raiz->dir);
+}
+
+void liberar(No *raiz) {
+    if (raiz == NULL) return;
+    liberar(raiz->esq);
+    liberar(raiz->dir);
+    free(raiz);
+}
+
+int main(void) {
+    No *raiz = NULL;
+
+    int valores[] = {50, 30, 70, 20, 40, 60, 80};
+    int n = sizeof(valores) / sizeof(valores[0]);
+    for (int i = 0; i < n; i++)
+        raiz = inserir(raiz, valores[i]);
+
+    printf("Arvore inicial: ");
+    emOrdem(raiz);
+    printf("\n");
+
+    printf("\nRemovendo 20 (no folha):\n");
+    raiz = remover(raiz, 20);
+    printf("Em ordem: ");
+    emOrdem(raiz);
+    printf("\n");
+
+    printf("\nRemovendo 30 (no com filhos):\n");
+    raiz = remover(raiz, 30);
+    printf("Em ordem: ");
+    emOrdem(raiz);
+    printf("\n");
+
+    printf("\nRemovendo 50 (raiz com dois filhos):\n");
+    raiz = remover(raiz, 50);
+    printf("Em ordem: ");
+    emOrdem(raiz);
+    printf("\n");
+
+    liberar(raiz);
+    return 0;
+}
