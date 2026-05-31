@@ -37,3 +37,8 @@ O código está organizado por períodos de aprendizado:
 * **`/fev`**: Fundamentos de sintaxe, tipos primitivos e estruturas de controle.
 * **`/mar`**: Introdução a vetores, strings e funções.
 * **`/abril`**: Alocação dinâmica, structs avançadas e Tipos Abstratos de Dados (TAD).
+* **`/maio`**: Árvores binárias de busca.
+* **`/jun`**: Comparação de algoritmos de busca e aprofundamento em árvores binárias de busca.
+* **`/corrida-algoritmos`**: Benchmark de ordenação (Bubble, Selection e Insertion Sort)
+
+
