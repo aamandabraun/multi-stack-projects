@@ -11,7 +11,6 @@ Trabalho de Estruturas de Dados em C — gerenciamento de atendimentos técnicos
 3. [Menu do Sistema](#menu-do-sistema)
 4. [Estruturas de Dados Utilizadas](#estruturas-de-dados-utilizadas)
 5. [Requisitos Atendidos](#requisitos-atendidos)
-6. [Divisão de Responsabilidades](#divisão-de-responsabilidades)
 
 ---
 
