@@ -19,7 +19,7 @@ int fila_vazia(const Fila *f)
     return f->frente == NULL;
 }
 
-int fila_enfileirar(Fila *f, Atendimento a)''
+int fila_enfileirar(Fila *f, Atendimento a)
 {
     NoFila *novo = (NoFila *)malloc(sizeof(NoFila));
     if (!novo) {
