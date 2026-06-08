@@ -173,22 +173,6 @@ Implementa **Bubble Sort** sobre os dados dos nós da lista encadeada (troca os 
 | 7 | Cancelar atendimento | `acao_cancelar()` |
 | 8 | Validação de entradas | `ler_int()` com intervalo em `main.c` |
 
----
-
-## Divisão de Responsabilidades
-
-| Integrante | Etapa | Responsabilidades |
-|------------|-------|-------------------|
-| **Pessoa A** | 1 | TAD Atendimento — estrutura base, criação, exibição |
-| **Pessoa B** | 2 | TAD Fila Dinâmica — enfileirar, desenfileirar, remoção por ID |
-| **Pessoa A** | 3 | TAD Lista Encadeada — histórico, busca por cliente e prioridade |
-| **Pessoa B** | 4 | Ordenação — Bubble Sort por prioridade, tempo e múltiplos critérios |
-| **Pessoa A** | 5 | Árvore BST — inserção, busca, remoção (3 casos), travessia in-order |
-| **Pessoa B** | 6 | Tabela Hash — djb2, chaining, busca por categoria, mais atendida |
-| **Pessoa A** | 7 | Estatísticas e persistência — CSV, carregamento, relatório |
-| **Pessoa B** | 8 | main.c — menu completo, geração de testes, integração dos TADs |
-| **Pessoa A** | 9 | Testes e correções — compilação sem warnings, sanitizer de memória |
-| **Pessoa B** | 10 | README.md — documentação completa |
 
 > **Nota:** Ambos os integrantes devem compreender o sistema completo,
 > pois qualquer pergunta pode ser direcionada a qualquer membro na apresentação.
