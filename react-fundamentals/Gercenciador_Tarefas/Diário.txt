@@ -1,4 +1,0 @@
-09/09
-1 - utilizar prepared statements nao sobrecarrega o servidor
-2- as any é perigoso pois aceita qualquer tipo de objeto
-3- o hacker vai saber onde atacar na infraestrutura

@@ -1,0 +1,9 @@
+09/09
+1 - utilizar prepared statements nao sobrecarrega o servidor
+2- as any é perigoso pois aceita qualquer tipo de objeto
+3- o hacker vai saber onde atacar na infraestrutura
+
+16/09
+1 - centralizar validação em helpers evita duplicar codigo nas rotas
+2- nao devolver erro.message pro cliente evita vazar informação do banco
+3 - transação garante que o banco nao fica pela metade se der erro no meio
