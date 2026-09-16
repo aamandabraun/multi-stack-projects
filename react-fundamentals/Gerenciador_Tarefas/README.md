@@ -1,63 +1,109 @@
-# Gerenciador de Tarefas - Sistema Web
+# 📝 Gerenciador de Tarefas
 
-## Visão Geral
+> Aplicação web para gerenciamento de tarefas, com front-end em HTML + Tailwind CSS e uma API REST segura em Express/TypeScript sobre SQLite.
 
-Este projeto é um sistema web de gerenciamento de tarefas desenvolvido para praticar a criação de interfaces responsivas e a implementação de uma API REST com Node.js e Express.
+<div align="center">
 
-A estrutura atual combina:
+![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5+-000000?style=for-the-badge&logo=express&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
-- front-end em HTML com Tailwind CSS
-- backend em TypeScript
-- API REST com Express para manipular tarefas
-- persistência de tarefas em banco de dados SQLite
-- validação de dados e consultas parametrizadas
-- ambiente de desenvolvimento configurado com scripts para rodar e testar a aplicação
+</div>
 
-## Objetivo
+---
 
-Criar um gerenciador de tarefas funcional, com foco em:
+## 📖 Sobre o projeto
 
-- organização visual da interface
-- cadastro e listagem de atividades
-- estrutura inicial de API para integração com o front-end
-- prática de desenvolvimento de sistemas web com rotas e manipulação de dados
+O **Gerenciador de Tarefas** é uma aplicação para cadastro, consulta, atualização e exclusão de tarefas, com prioridade e status configuráveis.
 
-## Status Atual do Projeto
+A tela principal (`index.html`) oferece uma interface simples de acesso e listagem, enquanto o back-end expõe uma API REST completa, com foco em:
 
-As atualizações implementadas no commit mais recente incluem:
+- 🌐 CRUD completo (GET, POST, PUT, PATCH e DELETE)
+- 🔐 Segurança contra SQL Injection com Prepared Statements
+- ✅ Validação centralizada em helpers reutilizáveis (type guards e allowlists)
+- 🔄 Transações para garantir atualizações parciais atômicas
+- 🧪 Testes de endpoints via REST Client
 
-- criação do servidor Express em TypeScript
-- configuração do projeto com scripts de desenvolvimento e build
-- criação automática do banco `tarefas.db` e das tabelas `tarefas` e `usuarios`
-- inserção de tarefas no SQLite por meio da rota `POST /api/tasks`
-- validação do título, que é obrigatório e deve conter pelo menos 3 caracteres após a remoção de espaços
-- suporte às prioridades `low`, `medium` e `high`, usando `medium` quando uma prioridade inválida não é informada
-- busca de tarefas pelo parâmetro `search` com prepared statement
-- exemplos de sucesso e de validação no arquivo `Aula_5e6/request.http`
+---
 
-## Tecnologias Utilizadas
+## 🎯 Objetivos
 
-- HTML5
-- Tailwind CSS
-- JavaScript/TypeScript
-- Node.js
-- Express
-- TSX
+O projeto tem como principais objetivos:
 
-## Estrutura do Projeto
+- Implementar uma API REST funcional para tarefas;
+- Validar rigorosamente os dados recebidos (título, prioridade e status);
+- Padronizar a validação de IDs e a criação de queries dinâmicas seguras;
+- Garantir atomicidade em atualizações parciais com `db.transaction`;
+- Diferenciar erros de validação (400) de erros internos (500), sem vazar detalhes do banco;
+- Praticar organização de rotas Express com TypeScript.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+| Tecnologia | Utilização |
+|---|---|
+| 🟢 **Node.js** | Ambiente de execução |
+| 🔷 **TypeScript** | Linguagem de programação |
+| ⚫ **Express** | Criação da API REST |
+| 🗃️ **SQLite** | Banco de dados |
+| 🔒 **better-sqlite3** | Comunicação com SQLite |
+| 🎨 **Tailwind CSS** | Estilização da interface |
+| 🧪 **REST Client** | Testes da API |
+
+---
+
+## 📚 Modelo de dados
+
+A entidade principal da aplicação é a **Tarefa**:
 
 ```text
-Gercenciador_Tarefas_Sistema_Web/
-├── index.html                  # Interface principal do sistema
-├── package.json                # Scripts e dependências do projeto
-├── tailwind.config.js          # Configuração do Tailwind CSS
-├── README.md                   # Documentação do projeto
-├── tarefas.db                  # Banco de dados SQLite
-├── Dicas e Truques.txt         # Anotações auxiliares
-├── desafio_Aulas_3e4/          # Arquivos das aulas 3 e 4
-│   └── Desafio_3e4.html
-├── Aula_5e6/
-│   ├── server.ts               # Servidor Express da aplicação
-│   ├── request.http            # Exemplos de requisições HTTP
-│   └── tsconfig.json           # Configuração do TypeScript
-└── node_modules/               # Dependências instaladas
+┌─────────────────────────────┐
+│           TAREFA            │
+├─────────────────────────────┤
+│ id          → INTEGER       │
+│ titulo      → TEXT          │
+│ prioridade  → TEXT          │ (low | medium | high)
+│ status      → TEXT          │ (pending | completed)
+└─────────────────────────────┘
+```
+
+---
+
+## 🔌 Endpoints
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/api/tasks` | Lista todas as tarefas (aceita `?search=` para busca por título) |
+| `POST` | `/api/tasks` | Cria uma nova tarefa |
+| `PUT` | `/api/tasks/:id` | Atualiza uma tarefa por completo |
+| `PATCH` | `/api/tasks/:id` | Atualiza campos específicos de uma tarefa (transacional) |
+| `DELETE` | `/api/tasks/:id` | Remove uma tarefa |
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
+Gerenciador_Tarefas/
+├── index.html              # Tela principal do sistema
+├── server.ts               # API Express (rotas, validações e transações)
+├── request.http            # Coleção de testes via REST Client
+├── package.json            # Scripts e dependências
+├── tsconfig.json           # Configuração do TypeScript
+├── tailwind.config.js      # Configuração do Tailwind CSS
+├── tarefas.db              # Banco de dados SQLite
+└── desafio_Aulas_3e4/      # Exercícios das aulas 3 e 4
+```
+
+---
+
+## ▶️ Como rodar
+
+```bash
+npm install
+npm run dev
+```
+
+O servidor sobe em `http://localhost:3000` (ou na porta definida em `process.env.PORT`).
