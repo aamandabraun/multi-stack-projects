@@ -4,6 +4,8 @@
 
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
@@ -29,6 +31,7 @@ Este repositório consolida trabalhos práticos de diferentes disciplinas do cur
 - **Orientação a objetos** — herança, polimorfismo, composição e princípios SOLID (Java)
 - **Desenvolvimento web full-stack** — APIs REST, validação de dados, prepared statements e transações (Node.js, Express, TypeScript, SQLite)
 - **Segurança de aplicações** — prevenção de SQL Injection, allowlists, type guards e tratamento discreto de erros
+- **Sistemas distribuídos e mensageria** — processamento assíncrono, eventos, exchanges TOPIC, routing keys e Dead Letter Queue (Spring Boot, RabbitMQ)
 - **Desenvolvimento mobile** — construção de interfaces e navegação com Flutter (Dart)
 - **Versionamento colaborativo** — Git e GitHub
 
@@ -42,6 +45,7 @@ Este repositório consolida trabalhos práticos de diferentes disciplinas do cur
 | [`c-logic-projects`](./c-logic-projects) | Algoritmos e estruturas dinâmicas em C — alocação de memória, ponteiros, structs, busca e ordenação. Inclui projeto em destaque: sistema de atendimentos técnicos com fila, lista, BST e tabela hash. | `C` `algorithms` `data-structures` |
 | [`java-poo`](./java-poo) | Aplicação prática dos pilares da POO e boas práticas (SOLID) em Java — sistemas de biblioteca e vendas, além de exercícios de fixação em sala. | `Java` `POO` `SOLID` |
 | [`react-fundamentals`](./react-fundamentals) | Desenvolvimento web full-stack — APIs REST seguras com Node.js, Express e SQLite, além de interfaces com HTML e TailwindCSS. | `Node.js` `TypeScript` `Express` `SQLite` |
+| [`spring-distributed-systems`](./spring-distributed-systems) | Sistema de pedidos com processamento assíncrono: API REST publica eventos em uma exchange TOPIC do RabbitMQ, consumidos por serviços de estoque, pagamento e notificação, com tratamento de mensagens inválidas via DLQ. | `Java` `Spring Boot` `RabbitMQ` `Docker` |
 | [`flutter-mobile-projects`](./flutter-mobile-projects) | Aplicações mobile em Flutter, incluindo um app de cardápio digital e exercícios de fixação. | `Flutter` `Dart` `Mobile` |
 
 ---

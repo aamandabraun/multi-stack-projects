@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:8080
+
+### Etapa 2 — Hello RabbitMQ via API REST
+POST {{baseUrl}}/mensagens
+Content-Type: application/json
+
+{
+  "mensagem": "Olá RabbitMQ"
+}
+
+### Etapa 5 — Criar pedido (publica pedido.criado)
+# Recebido por: estoque.queue e notificacao.queue
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "cliente": "Maria",
+  "produto": "Notebook",
+  "quantidade": 2,
+  "valor": 3500
+}
+
+### Pagar pedido (publica pedido.pago)
+# Recebido por: financeiro.queue e notificacao.queue
+POST {{baseUrl}}/pedidos/1001/pagamento
+
+### Cancelar pedido (publica pedido.cancelado)
+# Recebido por: estoque.queue, financeiro.queue e notificacao.queue
+# Crie um novo pedido antes: pedidos pagos não podem ser cancelados (409)
+POST {{baseUrl}}/pedidos/1002/cancelamento
+
+### Listar pedidos
+GET {{baseUrl}}/pedidos
+
+### Buscar pedido por id
+GET {{baseUrl}}/pedidos/1001
+
+### Validação na API — deve retornar 400
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "cliente": "",
+  "produto": "Mouse",
+  "quantidade": 0,
+  "valor": -10
+}
+
+### Mensagem inválida: JSON malformado → rejeitada → pedidos.dlq
+POST {{baseUrl}}/testes/mensagem-invalida?routingKey=pedido.criado
+Content-Type: text/plain
+
+isso não é um JSON
+
+### Mensagem inválida: JSON válido, conteúdo inconsistente → pedidos.dlq
+POST {{baseUrl}}/testes/mensagem-invalida?routingKey=pedido.pago
+Content-Type: text/plain
+
+{"eventoId":"6f1c2b0e-8a9d-4a51-9c3e-2d7f7b9a1e10","tipo":"pedido.pago","pedido":{"id":1,"cliente":"","quantidade":-5}}
