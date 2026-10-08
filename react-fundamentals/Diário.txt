@@ -7,3 +7,6 @@
 1 - centralizar validação em helpers evita duplicar codigo nas rotas
 2- nao devolver erro.message pro cliente evita vazar informação do banco
 3 - transação garante que o banco nao fica pela metade se der erro no meio
+
+07/10
+1 - aprendemos os fundamentos do vite com um projeto em reat
