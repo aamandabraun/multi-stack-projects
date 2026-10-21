@@ -9,4 +9,7 @@
 3 - transação garante que o banco nao fica pela metade se der erro no meio
 
 07/10
-1 - aprendemos os fundamentos do vite com um projeto em reat
+1 - aprendemos os fundamentos do vite com um projeto em react
+
+21/10
+Implementamos os códigos da aula 14/10
