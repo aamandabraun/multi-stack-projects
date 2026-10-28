@@ -326,3 +326,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiO
 ### 44. Excluir tarefa (DELETE)
 DELETE http://localhost:3000/api/tasks/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhbHVub0BzZW5haS5jb20iLCJpYXQiOjE3OTIyMDI4NTgsImV4cCI6MTc5MjIxMDA1OH0.6tS20zh-zQ_Bh3VedR3DLpBWSdtXmC73QbTyD4sKbv4
+
+### 45. GET / entrega a tela -> 200 text/html
+GET http://localhost:3000/
+
+### 46. GET /tarefas (SPA fallback) -> 200 text/html
+GET http://localhost:3000/tarefas
+
+### 47. GET /favicon.svg -> 200 image/svg+xml
+GET http://localhost:3000/favicon.svg
+
+### 48. GET /api/typo -> 404 application/json
+GET http://localhost:3000/api/typo
+
+### 49. GET /apixyz -> 200 text/html
+GET http://localhost:3000/apixyz
+
+### 50. GET /api/health -> 200
+GET http://localhost:3000/api/health
